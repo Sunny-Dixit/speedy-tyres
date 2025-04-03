@@ -325,19 +325,25 @@ const Book = () => {
                     {/*<h1 className='font-bold ml-10 text-orange-500 mb-2 block'>Boka Tid</h1>*/}
                     
                     <div className="flex mt-5 items-center space-x-4 border-b pb-4 overflow-x-auto scrollbar-hide">
-                        {categories.map(category => (
-                            <button 
-                                key={category.id} 
-                                onClick={() => handleCategoryClick(category)}
-                                className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap ${
-                                    selectedCategory?.id === category.id 
-                                        ? 'bg-orange-600 text-white' 
-                                        : 'bg-gray-700 text-gray-300'
-                                }`}
-                            >
-                                {category.name}
-                            </button>
-                        ))}
+                    {Array.isArray(categories) && categories.map(category => (
+    <button 
+        key={category.id} 
+        onClick={() => handleCategoryClick(category)}
+        className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap ${
+            selectedCategory?.id === category.id 
+                ? 'bg-orange-600 text-white' 
+                : 'bg-gray-700 text-gray-300'
+        }`}
+    >
+        {category.name}
+    </button>
+))}
+
+{Array.isArray(services) && services.map(service => (
+    <option key={service.id} value={service.id}>
+        {service.serviceName}
+    </option>
+))}
                     </div>
 
                     <div className="bg-gray-700 mt-5 p-4 rounded-xl border border-gray-600">
