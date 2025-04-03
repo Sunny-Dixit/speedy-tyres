@@ -1,116 +1,3 @@
-/*import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Eye, Edit, Trash, X } from 'lucide-react';
-import '../../admin.css';
-
-const AppointmentDashboard = () => {
-  const [appointments, setAppointments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const response = await axios.get('admin/appointment');
-        console.log("response data ", response.data);
-        setAppointments(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching appointments:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchAppointments();
-  }, []);
-
-  const fetchUserDetails = async (userId) => {
-    try {
-      const response = await axios.get(`/api/users/${userId}`);
-      setSelectedUser(response.data);
-      setShowModal(true);
-    } catch (error) {
-      console.error('Error fetching user details:', error);
-    }
-  };
-
-  return (
-    <div className="p-4 sm:p-6 bg-gradient-to-r from-blue-100 via-pink-100 to-yellow-100 min-h-screen">
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0">
-        <h1 className="text-3xl font-bold text-gray-700">Todays Appointments</h1>
-      </div>
-
-      <div className="overflow-x-auto bg-white shadow-md rounded-2xl">
-        <table className="w-full text-left table-auto">
-          <thead className="bg-gradient-to-r from-blue-200 to-teal-200 text-gray-700">
-            <tr>
-              {['User Name', 'Date', 'Time', 'Mechanic', 'Service', 'Status', 'Action'].map((heading) => (
-                <th key={heading} className="font-bold p-4">{heading}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr>
-                <td colSpan="7" className="p-4 text-center">Loading...</td>
-              </tr>
-            ) : (
-              appointments.map((appointment, index) => (
-                <tr key={index} className="border-b last:border-b-0 hover:bg-gradient-to-r from-blue-50 to-pink-50 transition-colors">
-                  <td className="p-4">{appointment.user.name}</td>
-                  <td className="p-4">{new Date(appointment.startTime).toLocaleDateString()}</td>
-                  <td className="p-4">{new Date(appointment.startTime).toLocaleTimeString()}</td>
-                  <td className="p-4">{appointment.employee.name}</td>
-                  <td className="p-4">{appointment.service.serviceName}</td>
-                  <td className="p-4">
-                    <span className="px-3 py-1 rounded-full text-white text-sm bg-teal-500">Success</span>
-                  </td>
-                  <td className="p-4 flex space-x-2">
-                    <Eye 
-                      className="cursor-pointer text-blue-500 hover:scale-110 transition-transform" 
-                      onClick={() => fetchUserDetails(appointment.user.userId)}
-                    />
-                    <Edit className="cursor-pointer text-green-500 hover:scale-110 transition-transform" />
-                    <Trash className="cursor-pointer text-red-500 hover:scale-110 transition-transform" />
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {showModal && selectedUser && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-2xl shadow-2xl w-[90%] sm:w-[450px] p-6 relative animate-scaleUp transition-transform duration-300">
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 bg-red-500 text-white rounded-full p-1 shadow-md transition-transform hover:scale-110"
-            >
-              <X size={20} />
-            </button>
-
-            <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-center py-3 rounded-xl mb-4 shadow-lg">
-              <h2 className="text-2xl font-bold">User Details</h2>
-            </div>
-
-            <div className="space-y-4 text-gray-700">
-              <div className="p-4 bg-gray-100 rounded-xl shadow-sm space-y-2">
-                <p><span className="font-semibold">Registration No:</span> {selectedUser.registrationNo}</p>
-                <p><span className="font-semibold">Name:</span> {selectedUser.name}</p>
-                <p><span className="font-semibold">Email:</span> {selectedUser.email}</p>
-                <p><span className="font-semibold">Phone:</span> {selectedUser.phoneNo}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default AppointmentDashboard;*/
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Eye, Edit, Trash, X, Search } from 'lucide-react';
@@ -189,7 +76,6 @@ const AppointmentDashboard = () => {
         <h1 className="text-3xl font-bold text-gray-700">Appointments Dashboard</h1>
       </div>
 
-      {/* Search Section */}
       <div className="bg-white p-4 rounded-xl shadow-md mb-6">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="relative flex-grow">
@@ -222,7 +108,6 @@ const AppointmentDashboard = () => {
         </div>
       </div>
 
-      {/* Results Count */}
       <div className="mb-4 text-gray-600">
         Showing {filteredAppointments.length} of {appointments.length} appointments
       </div>
