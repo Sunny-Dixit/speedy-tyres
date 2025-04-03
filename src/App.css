@@ -47,6 +47,21 @@
       transform: rotate(360deg);
     }
   }
+  /* Hide scrollbar globally */
+body, html {
+  overflow: hidden;
+}
+
+/* Hide scrollbar for specific elements */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
   
   
   

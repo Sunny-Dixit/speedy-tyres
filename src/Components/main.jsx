@@ -24,8 +24,8 @@ const SpeedyTyresPage = () => {
             </header>
 
             <div className="flex flex-col md:flex-row min-h-screen pt-14 pb-4">
-                <div className="w-full md:w-3/5 bg-black p-8 shadow-2xl overflow-y-auto hide-scrollbar custom-scrollbar h-screen ml-4 mb-4 hidden md:block">
-                    <section className="space-y-6 pb-6 p-6 border-b border-orange-600">
+            <div className="w-full md:w-3/5 bg-black p-8 shadow-2xl overflow-y-auto hide-scrollbar custom-scrollbar h-screen ml-4 mb-4 hidden md:block">
+            <section className="space-y-6 pb-6 p-6 border-b border-orange-600">
                         <div className="bg-black p-6 rounded-lg shadow-md">
                             <p className="text-lg text-white leading-relaxed font-light">
                                 Full-Service Auto Care in Gothenburg. We offer premium tyre and vehicle maintenance services.
@@ -84,8 +84,8 @@ const SpeedyTyresPage = () => {
                     </section>
                 </div>
 
-                <div className="w-full md:w-2/5 bg-transparent h-full flex flex-col justify-start mt-4 md:mt-0">
-                    <div className="h-full">
+                <div className="w-full md:w-2/5 bg-transparent flex flex-col justify-start overflow-y-auto h-screen p-4 fixed right-0 top-10 md:top-0">
+                <div className="h-full">
                         {showSlots ? (
                             <SlotCalendarPage onBack={() => setShowSlots(false)} />
                         ) : (
