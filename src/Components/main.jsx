@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Users from './Users';
-import SlotCalendarPage from './SeeAllSlots';
 import '../App.css';
 import logo from '../speedy-logo.png'; // Make sure the path is correct
 
 const SpeedyTyresPage = () => {
-    const [showSlots, setShowSlots] = useState(false);
 
     // Hide scrollbar globally for the body
     useEffect(() => {
@@ -84,13 +82,9 @@ const SpeedyTyresPage = () => {
                     </section>
                 </div>
 
-                <div className="w-full md:w-2/5 bg-transparent flex flex-col justify-start overflow-y-auto h-screen p-4 fixed right-0 top-10 md:top-0">
+                <div className="w-full md:w-2/5 bg-transparent flex flex-col justify-start overflow-y-auto md:h-screen p-4 fixed right-0 top-14 md:top-0">
                 <div className="h-full">
-                        {showSlots ? (
-                            <SlotCalendarPage onBack={() => setShowSlots(false)} />
-                        ) : (
-                            <Users onSeeAllSlots={() => setShowSlots(true)} />
-                        )}
+                            <Users/>
                     </div>
                 </div>
             </div>

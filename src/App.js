@@ -6,6 +6,8 @@ import Users from './Components/Users';
 import Book from './Components/Book';
 import SeeAllSlots from './Components/SeeAllSlots';
 import SpeedyTyresPage from './Components/main';
+import Admin from './Components/Admin/admin';
+
 import { useEffect } from 'react';
 
 
@@ -51,6 +53,8 @@ function App() {
         <Route path="/service" element={<Book />} />
         <Route path="/book" element={<SeeAllSlots />} />
         <Route path="/enquiry" element={<SpeedyTyresPage />} />
+        <Route path="/admin" element={<Admin />} />
+
     </Routes>
   </Router>
 

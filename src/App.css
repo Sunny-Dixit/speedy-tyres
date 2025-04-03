@@ -12,17 +12,7 @@
       animation: App-logo-spin infinite 20s linear;
     }
   }
-  
-  /* App.css */
-  body, html {
-    background-color: black; /* Ensure entire background is black */
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* Prevent scrollbar from appearing */
-  }
-  
+    
   
   .App-header {
     background-color: #282c34;
@@ -60,6 +50,22 @@ body, html {
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;  /* Chrome, Safari, Opera */
+}
+/* Hide scrollbar but allow scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Custom scroll container for visual effect */
+.custom-scroll-container {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
 }
 
   

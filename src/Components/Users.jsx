@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from '../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
-const Users = ({ onSeeAllSlots }) => {
+const Users = () => {
     const [firstName, setFirstName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -65,7 +65,7 @@ const Users = ({ onSeeAllSlots }) => {
             navigate('/service');
         } catch (error) {
             console.error('Error registering user:', error);
-            setError(error.response?.data?.message || 'An error occurred while registering the user. Please try again.');
+            setError(error.response?.data?.message || 'Please try again.');
         } finally {
             setLoading(false);
         }
