@@ -12,7 +12,7 @@ const AppointmentDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchDate, setSearchDate] = useState('');
 
-  /*useEffect(() => {
+  useEffect(() => {
     const fetchAppointments = async () => {
       try {
         const response = await axios.get('admin/appointment');
@@ -26,7 +26,7 @@ const AppointmentDashboard = () => {
     };
 
     fetchAppointments();
-  }, []);*/
+  }, []);
 
   const fetchUserDetails = async (userId) => {
     try {

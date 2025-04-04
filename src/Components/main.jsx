@@ -75,18 +75,25 @@ const SpeedyTyresPage = () => {
                                 </div>
                                 <div>
                                     <p className="font-semibold">📞 Call Now:</p>
-                                    <p>[Insert Phone Number]</p>
+                                    <p><a href="tel:0313951200">0313951200</a></p>
+                                    <p><a href="tel:0700000137">0700000137</a></p>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div>
 
-                <div className="w-full md:w-2/5 bg-transparent flex flex-col justify-start overflow-y-auto md:h-screen p-4 fixed right-0 top-14 md:top-0">
+             {/*   <div className="w-full md:w-2/5 bg-transparent flex flex-col justify-start overflow-y-auto md:h-screen p-4 fixed right-0 top-14 md:top-0">
                 <div className="h-full">
                             <Users/>
                     </div>
-                </div>
+                </div>*/}
+                <div className="w-full md:w-2/5 bg-transparent flex flex-col justify-start md:h-screen p-4 fixed right-0 top-14 md:top-0 overflow-hidden">
+    <div className="h-full">
+        <Users/>
+    </div>
+</div>
+
             </div>
         </div>
     );
