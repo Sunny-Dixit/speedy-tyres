@@ -387,7 +387,7 @@ const Book = () => {
                                     <p className="font-semibold text-gray-300">{selectedService.serviceName}</p>
                                     <p className="text-sm text-gray-500">
                                         {selectedDate 
-                                            ? `Tillgängliga tider ${format(selectedDate, "dd MMM 'yy")}` 
+                                            ? `Tillgängliga tider ${format(selectedDate, "dd MMM ")}` 
                                             : "Tillgängliga tider idag"}
                                     </p>
                                 </div>
@@ -411,7 +411,7 @@ const Book = () => {
                                         <p className="font-semibold text-gray-300">Tjänst</p>
                                         <p className="text-sm text-gray-500">
                                             {selectedDate 
-                                                ? format(selectedDate, "dd MMM 'yy") 
+                                                ? format(selectedDate, "dd MMM ") 
                                                 : "Idag"}
                                         </p>
                                     </div>

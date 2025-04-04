@@ -54,7 +54,7 @@ const Users = () => {
             };
                                     
 
-            const response = await axios.post('api/users/register', userDTO); 
+            const response = await axios.post('http://speedy-tyres.ap-south-1.elasticbeanstalk.com:9090/api/users/register', userDTO); 
             console.log('User registered successfully:', response.data);
 
             const userId = response.data.userId; 
