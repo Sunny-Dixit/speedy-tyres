@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from "../../axiosConfig";
 import { Eye, Edit, Trash, X, Search } from 'lucide-react';
-import '../../admin.css';
 
 const AppointmentDashboard = () => {
   const [appointments, setAppointments] = useState([]);
@@ -70,12 +69,29 @@ const AppointmentDashboard = () => {
     handleSearch();
   }, [searchTerm, searchDate, appointments]);
 
+  const handleDelete = async (id) => {
+    const confirm = window.confirm("Are you sure you want to delete this appointment?");
+    if (!confirm) return;
+  
+    try {
+      await axios.delete(`http://localhost:9090/admin/delete/${id}`);
+      const updatedAppointments = appointments.filter((appt) => appt.id !== id);
+      setAppointments(updatedAppointments);
+      setFilteredAppointments(updatedAppointments);
+    } catch (error) {
+      console.error('Error deleting appointment:', error);
+      alert("Something went wrong while deleting!");
+    }
+  };
+  
+
   return (
     <div className="p-4 sm:p-6 bg-gradient-to-r from-blue-100 via-pink-100 to-yellow-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0">
         <h1 className="text-3xl font-bold text-gray-700">Appointments Dashboard</h1>
       </div>
 
+      {/* Search Section */}
       <div className="bg-white p-4 rounded-xl shadow-md mb-6">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="relative flex-grow">
@@ -112,52 +128,70 @@ const AppointmentDashboard = () => {
         Showing {filteredAppointments.length} of {appointments.length} appointments
       </div>
 
-      <div className="overflow-x-auto bg-white shadow-md rounded-2xl">
-        <table className="w-full text-left table-auto">
-          <thead className="bg-gradient-to-r from-blue-200 to-teal-200 text-gray-700">
-            <tr>
-              {['User Name', 'Date', 'Time', 'Mechanic', 'Service', 'Status', 'Action'].map((heading) => (
-                <th key={heading} className="font-bold p-4">{heading}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
+      {/* Table with Scrollable Body */}
+      <div className="bg-white shadow-md rounded-2xl overflow-hidden">
+        <div className="overflow-y-auto max-h-[60vh] scrollbar-hide">
+          <table className="w-full">
+            <thead className="sticky top-0 z-10 bg-gradient-to-r from-blue-200 to-teal-200 text-gray-700">
               <tr>
-                <td colSpan="7" className="p-4 text-center">Loading...</td>
+                <th className="font-bold p-4 text-left min-w-[150px]">User Name</th>
+                <th className="font-bold p-4 text-left min-w-[120px]">Date</th>
+                <th className="font-bold p-4 text-left min-w-[100px]">Time</th>
+                <th className="font-bold p-4 text-left min-w-[150px]">Mechanic</th>
+                <th className="font-bold p-4 text-left min-w-[180px]">Service</th>
+                <th className="font-bold p-4 text-left min-w-[120px]">Status</th>
+                <th className="font-bold p-4 text-left min-w-[150px]">Action</th>
               </tr>
-            ) : filteredAppointments.length === 0 ? (
-              <tr>
-                <td colSpan="7" className="p-4 text-center text-gray-500">
-                  No appointments found matching your search criteria
-                </td>
-              </tr>
-            ) : (
-              filteredAppointments.map((appointment, index) => (
-                <tr key={index} className="border-b last:border-b-0 hover:bg-gradient-to-r from-blue-50 to-pink-50 transition-colors">
-                  <td className="p-4">{appointment.user.name}</td>
-                  <td className="p-4">{new Date(appointment.startTime).toLocaleDateString()}</td>
-                  <td className="p-4">{new Date(appointment.startTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
-                  <td className="p-4">{appointment.employee.name}</td>
-                  <td className="p-4">{appointment.service.serviceName}</td>
-                  <td className="p-4">
-                    <span className="px-3 py-1 rounded-full text-white text-sm bg-teal-500">Success</span>
-                  </td>
-                  <td className="p-4 flex space-x-2">
-                    <Eye 
-                      className="cursor-pointer text-blue-500 hover:scale-110 transition-transform" 
-                      onClick={() => fetchUserDetails(appointment.user.userId)}
-                    />
-                    <Edit className="cursor-pointer text-green-500 hover:scale-110 transition-transform" />
-                    <Trash className="cursor-pointer text-red-500 hover:scale-110 transition-transform" />
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr>
+                  <td colSpan="7" className="p-4 text-center">Loading appointments...</td>
+                </tr>
+              ) : filteredAppointments.length === 0 ? (
+                <tr>
+                  <td colSpan="7" className="p-4 text-center text-gray-500">
+                    No appointments found matching your search criteria
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                filteredAppointments.map((appointment, index) => (
+                  <tr 
+                    key={index} 
+                    className="border-b hover:bg-blue-50 transition-colors"
+                  >
+                    <td className="p-4 min-w-[150px]">{appointment.user.name}</td>
+                    <td className="p-4 min-w-[120px]">{new Date(appointment.startTime).toLocaleDateString()}</td>
+                    <td className="p-4 min-w-[100px]">
+                      {new Date(appointment.startTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                    </td>
+                    <td className="p-4 min-w-[150px]">{appointment.employee.name}</td>
+                    <td className="p-4 min-w-[180px]">{appointment.service.serviceName}</td>
+                    <td className="p-4 min-w-[120px]">
+                      <span className="px-3 py-1 rounded-full text-white text-sm bg-teal-500">
+                        Success
+                      </span>
+                    </td>
+                    <td className="p-4 min-w-[150px] flex space-x-2">
+                      <Eye 
+                        className="cursor-pointer text-blue-500 hover:scale-110 transition-transform" 
+                        onClick={() => fetchUserDetails(appointment.user.userId)}
+                      />
+                      <Edit className="cursor-pointer text-green-500 hover:scale-110 transition-transform" />
+                      <Trash
+  className="cursor-pointer text-red-500 hover:scale-110 transition-transform"
+  onClick={() => handleDelete(appointment.id)}
+/>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
+      {/* User Details Modal */}
       {showModal && selectedUser && (
         <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-2xl shadow-2xl w-[90%] sm:w-[450px] p-6 relative animate-scaleUp transition-transform duration-300">
@@ -183,6 +217,17 @@ const AppointmentDashboard = () => {
           </div>
         </div>
       )}
+
+      {/* Hide Scrollbar */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 };

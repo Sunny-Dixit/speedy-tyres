@@ -218,6 +218,17 @@ const Book = () => {
 };
 
 export default Book;*/
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
@@ -318,7 +329,6 @@ const Book = () => {
     return (
         <div className="flex justify-center min-h-screen bg-black text-white px-4 py-10">
             <div className="w-full max-w-4xl bg-gray-800 p-6 shadow-lg space-y-6 rounded-lg relative">
-                {/* Custom scroll container */}
                 <div className="absolute inset-0 overflow-hidden rounded-lg pointer-events-none">
                     <div className="h-full w-full custom-scroll-container"></div>
                 </div>
@@ -454,7 +464,7 @@ const Book = () => {
         )
     ) : (
         <>
-            <button className="px-4 py-2 bg-gray-600 text-gray-300 rounded">11:15</button>
+           <button className="px-4 py-2 bg-gray-600 text-gray-300 rounded">11:15</button>
             <button className="px-4 py-2 bg-gray-600 text-gray-300 rounded">11:30</button>
             <button className="px-4 py-2 bg-gray-600 text-gray-300 rounded">11:45</button>
         </>

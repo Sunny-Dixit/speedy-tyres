@@ -68,6 +68,40 @@ body, html {
   pointer-events: none;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes ping-slow {
+  0% {
+      transform: scale(1);
+      opacity: 1;
+  }
+  75%, 100% {
+      transform: scale(1.5);
+      opacity: 0;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out both;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out both;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+
   
   
   
