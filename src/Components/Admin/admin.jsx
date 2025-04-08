@@ -74,7 +74,8 @@ const AppointmentDashboard = () => {
     if (!confirm) return;
   
     try {
-      await axios.delete(`http://localhost:9090/admin/delete/${id}`);
+      console.log("Deleting slot with ID:", id);
+      await axios.delete(`admin/delete/${id}`);
       const updatedAppointments = appointments.filter((appt) => appt.id !== id);
       setAppointments(updatedAppointments);
       setFilteredAppointments(updatedAppointments);
