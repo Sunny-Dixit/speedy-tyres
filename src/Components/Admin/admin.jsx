@@ -44,13 +44,13 @@ const AppointmentDashboard = () => {
     }
 
     const filtered = appointments.filter((appointment) => {
-      const matchesSearchTerm = 
+      const matchesSearchTerm =
         appointment.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         appointment.employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         appointment.service.serviceName.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      const matchesDate = 
-        !searchDate || 
+
+      const matchesDate =
+        !searchDate ||
         new Date(appointment.startTime).toISOString().split('T')[0] === searchDate;
 
       return matchesSearchTerm && matchesDate;
@@ -72,9 +72,8 @@ const AppointmentDashboard = () => {
   const handleDelete = async (id) => {
     const confirm = window.confirm("Are you sure you want to delete this appointment?");
     if (!confirm) return;
-  
+
     try {
-      console.log("Deleting slot with ID:", id);
       await axios.delete(`admin/delete/${id}`);
       const updatedAppointments = appointments.filter((appt) => appt.id !== id);
       setAppointments(updatedAppointments);
@@ -84,7 +83,6 @@ const AppointmentDashboard = () => {
       alert("Something went wrong while deleting!");
     }
   };
-  
 
   return (
     <div className="p-4 sm:p-6 bg-gradient-to-r from-blue-100 via-pink-100 to-yellow-100 min-h-screen">
@@ -106,7 +104,7 @@ const AppointmentDashboard = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          
+
           <div className="flex items-center gap-2">
             <input
               type="date"
@@ -138,6 +136,7 @@ const AppointmentDashboard = () => {
                 <th className="font-bold p-4 text-left min-w-[100px]">Time</th>
                 <th className="font-bold p-4 text-left min-w-[150px]">Mechanic</th>
                 <th className="font-bold p-4 text-left min-w-[180px]">Service</th>
+                <th className="font-bold p-4 text-left min-w-[100px]">Price</th>
                 <th className="font-bold p-4 text-left min-w-[120px]">Status</th>
                 <th className="font-bold p-4 text-left min-w-[150px]">Action</th>
               </tr>
@@ -145,42 +144,40 @@ const AppointmentDashboard = () => {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan="7" className="p-4 text-center">Loading appointments...</td>
+                  <td colSpan="8" className="p-4 text-center">Loading appointments...</td>
                 </tr>
               ) : filteredAppointments.length === 0 ? (
                 <tr>
-                  <td colSpan="7" className="p-4 text-center text-gray-500">
+                  <td colSpan="8" className="p-4 text-center text-gray-500">
                     No appointments found matching your search criteria
                   </td>
                 </tr>
               ) : (
                 filteredAppointments.map((appointment, index) => (
-                  <tr 
-                    key={index} 
-                    className="border-b hover:bg-blue-50 transition-colors"
-                  >
-                    <td className="p-4 min-w-[150px]">{appointment.user.name}</td>
-                    <td className="p-4 min-w-[120px]">{new Date(appointment.startTime).toLocaleDateString()}</td>
-                    <td className="p-4 min-w-[100px]">
-                      {new Date(appointment.startTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                  <tr key={index} className="border-b hover:bg-blue-50 transition-colors">
+                    <td className="p-4">{appointment.user.name}</td>
+                    <td className="p-4">{new Date(appointment.startTime).toLocaleDateString()}</td>
+                    <td className="p-4">
+                      {new Date(appointment.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </td>
-                    <td className="p-4 min-w-[150px]">{appointment.employee.name}</td>
-                    <td className="p-4 min-w-[180px]">{appointment.service.serviceName}</td>
-                    <td className="p-4 min-w-[120px]">
+                    <td className="p-4">{appointment.employee.name}</td>
+                    <td className="p-4">{appointment.service.serviceName}</td>
+                    <td className="p-4">{appointment.service.price} SEK</td>
+                    <td className="p-4">
                       <span className="px-3 py-1 rounded-full text-white text-sm bg-teal-500">
                         Success
                       </span>
                     </td>
-                    <td className="p-4 min-w-[150px] flex space-x-2">
-                      <Eye 
-                        className="cursor-pointer text-blue-500 hover:scale-110 transition-transform" 
+                    <td className="p-4 flex space-x-2">
+                      <Eye
+                        className="cursor-pointer text-blue-500 hover:scale-110 transition-transform"
                         onClick={() => fetchUserDetails(appointment.user.userId)}
                       />
                       <Edit className="cursor-pointer text-green-500 hover:scale-110 transition-transform" />
                       <Trash
-  className="cursor-pointer text-red-500 hover:scale-110 transition-transform"
-  onClick={() => handleDelete(appointment.id)}
-/>
+                        className="cursor-pointer text-red-500 hover:scale-110 transition-transform"
+                        onClick={() => handleDelete(appointment.id)}
+                      />
                     </td>
                   </tr>
                 ))
@@ -242,6 +239,10 @@ const AppointmentDashboard = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchDate, setSearchDate] = useState('');
+  const [highlightedAppointmentIds, setHighlightedAppointmentIds] = useState(() => {
+    const stored = localStorage.getItem('highlightedAppointmentIds');
+    return stored ? JSON.parse(stored) : [];
+  });
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -249,6 +250,16 @@ const AppointmentDashboard = () => {
         const response = await axios.get('admin/appointment');
         setAppointments(response.data);
         setFilteredAppointments(response.data);
+
+        // Get already viewed appointment IDs
+        const viewedIds = JSON.parse(localStorage.getItem('highlightedAppointmentIds')) || [];
+
+        // Filter for new ones
+        const newIds = response.data
+          .filter(appointment => !viewedIds.includes(appointment.id))
+          .map(appt => appt.id);
+
+        setHighlightedAppointmentIds(prev => [...new Set([...prev, ...newIds])]);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching appointments:', error);
@@ -259,11 +270,16 @@ const AppointmentDashboard = () => {
     fetchAppointments();
   }, []);
 
-  const fetchUserDetails = async (userId) => {
+  const fetchUserDetails = async (userId, appointmentId) => {
     try {
       const response = await axios.get(`/api/users/${userId}`);
       setSelectedUser(response.data);
       setShowModal(true);
+
+      // Remove the appointmentId from highlights
+      const updated = highlightedAppointmentIds.filter(id => id !== appointmentId);
+      setHighlightedAppointmentIds(updated);
+      localStorage.setItem('highlightedAppointmentIds', JSON.stringify(updated));
     } catch (error) {
       console.error('Error fetching user details:', error);
     }
@@ -310,6 +326,11 @@ const AppointmentDashboard = () => {
       const updatedAppointments = appointments.filter((appt) => appt.id !== id);
       setAppointments(updatedAppointments);
       setFilteredAppointments(updatedAppointments);
+
+      // Also remove from highlights if exists
+      const updated = highlightedAppointmentIds.filter(aid => aid !== id);
+      setHighlightedAppointmentIds(updated);
+      localStorage.setItem('highlightedAppointmentIds', JSON.stringify(updated));
     } catch (error) {
       console.error('Error deleting appointment:', error);
       alert("Something went wrong while deleting!");
@@ -387,34 +408,41 @@ const AppointmentDashboard = () => {
                   </td>
                 </tr>
               ) : (
-                filteredAppointments.map((appointment, index) => (
-                  <tr key={index} className="border-b hover:bg-blue-50 transition-colors">
-                    <td className="p-4">{appointment.user.name}</td>
-                    <td className="p-4">{new Date(appointment.startTime).toLocaleDateString()}</td>
-                    <td className="p-4">
-                      {new Date(appointment.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </td>
-                    <td className="p-4">{appointment.employee.name}</td>
-                    <td className="p-4">{appointment.service.serviceName}</td>
-                    <td className="p-4">{appointment.service.price} SEK</td>
-                    <td className="p-4">
-                      <span className="px-3 py-1 rounded-full text-white text-sm bg-teal-500">
-                        Success
-                      </span>
-                    </td>
-                    <td className="p-4 flex space-x-2">
-                      <Eye
-                        className="cursor-pointer text-blue-500 hover:scale-110 transition-transform"
-                        onClick={() => fetchUserDetails(appointment.user.userId)}
-                      />
-                      <Edit className="cursor-pointer text-green-500 hover:scale-110 transition-transform" />
-                      <Trash
-                        className="cursor-pointer text-red-500 hover:scale-110 transition-transform"
-                        onClick={() => handleDelete(appointment.id)}
-                      />
-                    </td>
-                  </tr>
-                ))
+                filteredAppointments.map((appointment, index) => {
+                  const isHighlighted = highlightedAppointmentIds.includes(appointment.id);
+
+                  return (
+                    <tr
+                      key={index}
+                      className={`border-b transition-colors ${isHighlighted ? 'bg-yellow-100 animate-pulse' : 'hover:bg-blue-50'}`}
+                    >
+                      <td className="p-4">{appointment.user.name}</td>
+                      <td className="p-4">{new Date(appointment.startTime).toLocaleDateString()}</td>
+                      <td className="p-4">
+                        {new Date(appointment.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </td>
+                      <td className="p-4">{appointment.employee.name}</td>
+                      <td className="p-4">{appointment.service.serviceName}</td>
+                      <td className="p-4">{appointment.service.price} SEK</td>
+                      <td className="p-4">
+                        <span className="px-3 py-1 rounded-full text-white text-sm bg-teal-500">
+                          Success
+                        </span>
+                      </td>
+                      <td className="p-4 flex space-x-2">
+                        <Eye
+                          className="cursor-pointer text-blue-500 hover:scale-110 transition-transform"
+                          onClick={() => fetchUserDetails(appointment.user.userId, appointment.id)}
+                        />
+                        <Edit className="cursor-pointer text-green-500 hover:scale-110 transition-transform" />
+                        <Trash
+                          className="cursor-pointer text-red-500 hover:scale-110 transition-transform"
+                          onClick={() => handleDelete(appointment.id)}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })
               )}
             </tbody>
           </table>
@@ -448,7 +476,6 @@ const AppointmentDashboard = () => {
         </div>
       )}
 
-      {/* Hide Scrollbar */}
       <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
@@ -463,4 +490,5 @@ const AppointmentDashboard = () => {
 };
 
 export default AppointmentDashboard;
+
 
