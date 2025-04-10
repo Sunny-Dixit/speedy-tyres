@@ -396,7 +396,7 @@ const AppointmentDashboard = () => {
                     </td>
                     <td className="p-4">{appointment.employee.name}</td>
                     <td className="p-4">{appointment.service.serviceName}</td>
-                    <td className="p-4">₹{appointment.service.price}</td>
+                    <td className="p-4">SEK {appointment.service.price}</td>
                     <td className="p-4">
                       <span className="px-3 py-1 rounded-full text-white text-sm bg-teal-500">
                         Success
