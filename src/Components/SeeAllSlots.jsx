@@ -92,7 +92,7 @@ const SlotCalendarPage = () => {
                     audioRef.current.play().catch(e => console.log("Audio play error:", e));
 
                     setTimeout(() => {
-                        navigate("https://speedy-tyres.se/"); // redirect to homepage
+                        window.location.href = "https://speedy-tyres.se/";
                     }, 3000); // after 3 seconds
                 })
                 .catch((error) => {
