@@ -17,8 +17,8 @@ export default instance;*/
 import axios from 'axios';
 
 const instance = axios.create({
- // baseURL: 'https://api.speedy-tyres-v3.up7news.in/',
-  baseURL: 'http://localhost:9090/',
+   baseURL: 'https://api.speedy-tyres-v3.up7news.in/',
+  //baseURL: 'http://localhost:9090/',
   headers: {
     'Content-Type': 'application/json',
   },
