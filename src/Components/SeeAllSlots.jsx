@@ -70,6 +70,8 @@ const SlotCalendarPage = () => {
     if (!userId) {
         console.error("User ID not found. Please register first.");
     }
+    console.log("user Id",Number(userId), // <-- Convert here
+)
 
     const handleBookAppointment = () => {
         if (selectedSlot && employeeId && serviceId && selectedDateLocal) {
