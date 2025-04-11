@@ -54,7 +54,7 @@ const SpeedyTyresPage = () => {
                                 <li>🔧 Däck & Fälgar – Försäljning, reparationer och restaurering</li>
                                 <li>🛠  Bilservice & Underhåll – Oljebyten, bromskontroller, motordiagnostik</li>
                                 <li>🚗 Professionellt karosseri – Borttagning av bucklor/repor, fullständig omlackering</li>
-                                <li>🔄 Used Tyres – Budget-friendly options with warranty</li>
+                                <li>🔄 Begagnade däck – Budgetvänliga alternativ med garanti</li>
                             </ul>
                         </div>
                     </section>
@@ -62,18 +62,18 @@ const SpeedyTyresPage = () => {
                     <section className="space-y-6 pb-6 p-6">
                         <div className="bg-black p-6 rounded-lg shadow-md">
                             <h2 className="text-3xl font-semibold text-orange-500 tracking-wide">
-                                Contact Us
+                                 Kontakta oss
                             </h2>
                             <p className="text-white text-sm md:text-base">
-                                Feel free to get in touch with us for any inquiries or to book an appointment.
+                                Tveka inte att kontakta oss för frågor eller för att boka en tid.
                             </p>
                             <div className="mt-6 space-y-4 text-white text-sm md:text-base">
                                 <div>
-                                    <p className="font-semibold">📍 Visit Us:</p>
+                                    <p className="font-semibold">📍 Besök oss:</p>
                                     <p>Manufakturgatan 13, 417 07 Göteborg</p>
                                 </div>
                                 <div>
-                                    <p className="font-semibold">📞 Call Now:</p>
+                                    <p className="font-semibold">📞 Ring nu:</p>
                                     <p><a href="tel:0313951200">0313951200</a></p>
                                     <p><a href="tel:0700000137">0700000137</a></p>
                                 </div>
