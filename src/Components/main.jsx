@@ -26,22 +26,21 @@ const SpeedyTyresPage = () => {
             <section className="space-y-6 pb-6 p-6 border-b border-orange-600">
                         <div className="bg-black p-6 rounded-lg shadow-md">
                             <p className="text-lg text-white leading-relaxed font-light">
-                                Full-Service Auto Care in Gothenburg. We offer premium tyre and vehicle maintenance services.
-                            </p>
+                             Fullservice bilvård i Göteborg. Vi erbjuder premium däck- och fordonsunderhållstjänster.                            </p>
                         </div>
                     </section>
 
                     <section className="space-y-6 pb-6 p-6 border-b border-orange-600">
                         <div className="bg-black p-6 rounded-lg shadow-md">
                             <h2 className="text-3xl font-semibold text-orange-500 tracking-wide">
-                                Why Choose Us?
+                            Varför välja oss?
                             </h2>
                             <ul className="space-y-4 text-white mt-4 text-sm md:text-base list-disc pl-5">
-                                <li>✅ Fast & Reliable – Same-day service for urgent repairs</li>
-                                <li>✅ Expert Technicians – Certified professionals with OEM-grade tools</li>
-                                <li>✅ Fair Pricing – Competitive rates for all vehicle types</li>
-                                <li>✅ Warranty Included – Trusted workmanship guarantees</li>
-                                <li>✅ Customer-First – 4.9★ ratings from Gothenburg drivers</li>
+                                <li>✅ Snabbt & Pålitligt – Samma dag-service för akuta reparationer</li>
+                                <li>✅ Experttekniker – Certifierade proffs med OEM-klassade verktyg</li>
+                                <li>✅ Rättvisa priser – Konkurrenskraftiga priser för alla fordonstyper</li>
+                                <li>✅ Garanti ingår – Pålitliga utförandegarantier</li>
+                                <li>✅ Kund-först – 4,9★ betyg från Göteborgsförare</li>
                             </ul>
                         </div>
                     </section>
@@ -49,12 +48,12 @@ const SpeedyTyresPage = () => {
                     <section className="space-y-6 pb-6 p-6 border-b border-orange-600">
                         <div className="bg-black p-6 rounded-lg shadow-md">
                             <h2 className="text-3xl font-semibold text-orange-500 tracking-wide">
-                                Our Services
+                            Våra tjänster
                             </h2>
                             <ul className="space-y-4 text-white mt-4 text-sm md:text-base list-disc pl-5">
-                                <li>🔧 Tyres & Rims – Sales, repairs, and restoration</li>
-                                <li>🛠 Car Servicing & Maintenance – Oil changes, brake checks, engine diagnostics</li>
-                                <li>🚗 Professional Bodywork – Dent/scratch removal, full repainting</li>
+                                <li>🔧 Däck & Fälgar – Försäljning, reparationer och restaurering</li>
+                                <li>🛠  Bilservice & Underhåll – Oljebyten, bromskontroller, motordiagnostik</li>
+                                <li>🚗 Professionellt karosseri – Borttagning av bucklor/repor, fullständig omlackering</li>
                                 <li>🔄 Used Tyres – Budget-friendly options with warranty</li>
                             </ul>
                         </div>
