@@ -87,7 +87,7 @@ const AppointmentDashboard = () => {
   return (
     <div className="p-4 sm:p-6 bg-gradient-to-r from-blue-100 via-pink-100 to-yellow-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0">
-        <h1 className="text-3xl font-bold text-gray-700">Appointments Dashboard</h1>
+      <h1 className="text-3xl font-bold text-gray-700">Bokningsöversikt</h1>
       </div>
 
       <div className="bg-white p-4 rounded-xl shadow-md mb-6">
@@ -98,7 +98,7 @@ const AppointmentDashboard = () => {
             </div>
             <input
               type="text"
-              placeholder="Search by name, mechanic, or service..."
+              placeholder="Sök efter namn, mekaniker eller tjänst..."
               className="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -116,14 +116,14 @@ const AppointmentDashboard = () => {
               onClick={handleReset}
               className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
             >
-              Reset
+              återställa
             </button>
           </div>
         </div>
       </div>
 
       <div className="mb-4 text-gray-600">
-        Showing {filteredAppointments.length} of {appointments.length} appointments
+      Visar  {filteredAppointments.length} av  {appointments.length} bokningar
       </div>
 
       <div className="bg-white shadow-md rounded-2xl overflow-hidden">
@@ -131,14 +131,14 @@ const AppointmentDashboard = () => {
           <table className="w-full">
             <thead className="sticky top-0 z-10 bg-gradient-to-r from-blue-200 to-teal-200 text-gray-700">
               <tr>
-                <th className="font-bold p-4 text-left min-w-[150px]">User Name</th>
-                <th className="font-bold p-4 text-left min-w-[120px]">Date</th>
-                <th className="font-bold p-4 text-left min-w-[100px]">Time</th>
-                <th className="font-bold p-4 text-left min-w-[150px]">Mechanic</th>
-                <th className="font-bold p-4 text-left min-w-[180px]">Service</th>
-                <th className="font-bold p-4 text-left min-w-[100px]">Price</th>
-                <th className="font-bold p-4 text-left min-w-[120px]">Status</th>
-                <th className="font-bold p-4 text-left min-w-[150px]">Action</th>
+              <th className="font-bold p-4 text-left min-w-[150px]">Användarnamn</th>
+              <th className="font-bold p-4 text-left min-w-[120px]">Datum</th>
+              <th className="font-bold p-4 text-left min-w-[100px]">Tid</th>
+              <th className="font-bold p-4 text-left min-w-[150px]">Mekaniker</th>
+              <th className="font-bold p-4 text-left min-w-[180px]">Tjänst</th>
+              <th className="font-bold p-4 text-left min-w-[100px]">Pris</th>
+              <th className="font-bold p-4 text-left min-w-[120px]">Status</th>
+              <th className="font-bold p-4 text-left min-w-[150px]">Åtgärd</th>
               </tr>
             </thead>
             <tbody>
@@ -149,7 +149,7 @@ const AppointmentDashboard = () => {
               ) : filteredAppointments.length === 0 ? (
                 <tr>
                   <td colSpan="8" className="p-4 text-center text-gray-500">
-                    No appointments found matching your search criteria
+                  Inga bokningar hittades som matchar dina sökkriterier
                   </td>
                 </tr>
               ) : (
