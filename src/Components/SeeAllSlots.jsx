@@ -73,7 +73,7 @@ const SlotCalendarPage = () => {
     console.log("user Id",Number(userId), // <-- Convert here
 )
 
-    const handleBookAppointment = () => {
+  /*  const handleBookAppointment = () => {
         if (selectedSlot && employeeId && serviceId && selectedDateLocal) {
             const appointmentData = {
                 userId: Number(userId), // <-- Convert here
@@ -99,6 +99,58 @@ const SlotCalendarPage = () => {
                 })
                 .catch((error) => {
                     console.error("Error booking appointment:", error);
+                });
+        } else {
+            alert("Vänligen välj en tid innan du bokar.");
+        }
+    };*/
+
+    const handleBookAppointment = () => {
+        if (selectedSlot && employeeId && serviceId && selectedDateLocal) {
+            const userId = localStorage.getItem('userId');
+            if (!userId) {
+                console.error("User ID not found. Please register first.");
+                alert("User ID not found. Please register first.");
+                return;
+            }
+    
+            const userIdNumber = Number(userId);
+            if (isNaN(userIdNumber) || userIdNumber <= 0) {
+                console.error("Invalid userId: Must be a positive number", userId);
+                alert("Invalid User ID. Please register again.");
+                return;
+            }
+    
+            const appointmentData = {
+                userId: userIdNumber,
+                employeeId: employeeId,
+                serviceId: serviceId,
+                date: format(selectedDateLocal, "yyyy-MM-dd"),
+                time: format(parse(selectedSlot.startTime, "hh:mm a", new Date()), "HH:mm"),
+            };
+    
+            axios
+                .post("api/book", appointmentData)
+                .then((response) => {
+                    console.log("Booking Successful:", response.data);
+                    setBookingSuccess(true);
+                    localStorage.removeItem('userId');
+    
+                    // Play success sound
+                    audioRef.current.play().catch(e => console.log("Audio play error:", e));
+    
+                    setTimeout(() => {
+                        window.location.href = "https://speedy-tyres.se/";
+                    }, 3000);
+                })
+                .catch((error) => {
+                    console.error("Error booking appointment:", {
+                        data: error.response?.data,
+                        status: error.response?.status,
+                        headers: error.response?.headers,
+                        message: error.message
+                    });
+                    alert(`Failed to book appointment: ${error.response?.data?.message || error.message}`);
                 });
         } else {
             alert("Vänligen välj en tid innan du bokar.");
