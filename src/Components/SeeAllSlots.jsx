@@ -74,7 +74,7 @@ const SlotCalendarPage = () => {
     const handleBookAppointment = () => {
         if (selectedSlot && employeeId && serviceId && selectedDateLocal) {
             const appointmentData = {
-                userId,
+                userId: Number(userId), // <-- Convert here
                 employeeId: employeeId,
                 serviceId: serviceId,
                 date: format(selectedDateLocal, "yyyy-MM-dd"),
