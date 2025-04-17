@@ -2,9 +2,9 @@
 import axios from 'axios';
 
 const instance = axios.create({
-   //baseURL: 'https://api.speedy-tyres-v3.up7news.in/',
+   baseURL: 'https://api.speedy-tyres-v3.up7news.in/',
     //baseURL: 'https://api.speedy-tyres-mail.dermrange.io/',
-   baseURL: 'http://speedy-tyres-mail.ap-south-1.elasticbeanstalk.com/',
+   //baseURL: 'http://speedy-tyres-mail.ap-south-1.elasticbeanstalk.com/',
 
 
   headers: {
