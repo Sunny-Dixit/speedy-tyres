@@ -8,7 +8,9 @@ import SeeAllSlots from './Components/SeeAllSlots';
 import SpeedyTyresPage from './Components/main';
 import Admin from './Components/Admin/admin';
 
+
 import { useEffect } from 'react';
+import AdminDashboard from './Components/Admin/AdminDashboard';
 
 
 const PageTitle = () => {
@@ -54,6 +56,9 @@ function App() {
         <Route path="/book" element={<SeeAllSlots />} />
         <Route path="/enquiry" element={<SpeedyTyresPage />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/dashboard" element={<AdminDashboard />} />
+
+
 
     </Routes>
   </Router>
