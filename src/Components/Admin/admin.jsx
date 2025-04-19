@@ -14,7 +14,7 @@ const AppointmentDashboard = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get('admin/appointment');
+        const response = await axios.get('https://api.speedy-tyres-v3.up7news.in/admin/appointment');
         setAppointments(response.data);
         setFilteredAppointments(response.data);
         setLoading(false);
@@ -29,7 +29,7 @@ const AppointmentDashboard = () => {
 
   const fetchUserDetails = async (userId) => {
     try {
-      const response = await axios.get(`/api/users/${userId}`);
+      const response = await axios.get(`https://api.speedy-tyres-v3.up7news.in/api/users/${userId}`);
       setSelectedUser(response.data);
       setShowModal(true);
     } catch (error) {
@@ -74,7 +74,7 @@ const AppointmentDashboard = () => {
     if (!confirm) return;
 
     try {
-      await axios.delete(`admin/delete/${id}`);
+      await axios.delete(`https://api.speedy-tyres-v3.up7news.in/admin/delete/${id}`);
       const updatedAppointments = appointments.filter((appt) => appt.id !== id);
       setAppointments(updatedAppointments);
       setFilteredAppointments(updatedAppointments);
