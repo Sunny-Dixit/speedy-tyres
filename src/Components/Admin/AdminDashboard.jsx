@@ -954,17 +954,17 @@ Spara tjänst
                   <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Radera bokning</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+             {/* <tbody className="divide-y divide-gray-200">
                 {filteredAppointments.map((appointment) => (
                   <tr key={appointment.id} className="hover:bg-blue-50 transition-colors">
                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{appointment.id}</td>
                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{appointment.user?.name || '-'}</td>
+                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{appointment.service?.price || '-'} SEK</td>
                     <td className="py-4 px-6 whitespace-nowrap">
                       <button className="bg-blue-500 text-white rounded-md p-1.5 hover:bg-blue-600 transition-colors shadow-sm">
                         <Edit className="w-4 h-4" />
                       </button>
                     </td>
-                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{appointment.service?.price || '-'} SEK</td>
                     <td className="py-4 px-6 text-sm text-gray-700 whitespace-nowrap">{new Date(appointment.startTime).toLocaleDateString()}</td>
                     <td className="py-4 px-6 text-sm text-gray-700 whitespace-nowrap">
                       {new Date(appointment.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -1005,7 +1005,82 @@ Spara tjänst
                     </td>
                   </tr>
                 ))}
-              </tbody>
+              </tbody>*/}
+              <tbody className="divide-y divide-gray-200">
+  {filteredAppointments.map((appointment) => (
+    <tr key={appointment.id} className="hover:bg-blue-50 transition-colors">
+      {/* Booking ID */}
+      <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{appointment.id}</td>
+
+      {/* Customer Name */}
+      <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">{appointment.user?.name || '-'}</td>
+
+      {/* Service */}
+      <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">
+        {appointment.service?.serviceName || '-'}
+      </td>
+
+      {/* Edit */}
+      <td className="py-4 px-6 whitespace-nowrap">
+        <button className="bg-blue-500 text-white rounded-md p-1.5 hover:bg-blue-600 transition-colors shadow-sm">
+          <Edit className="w-4 h-4" />
+        </button>
+      </td>
+
+      {/* Service Price */}
+      <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">
+        {appointment.service?.price || '-'} SEK
+      </td>
+
+      {/* Booking Date */}
+      <td className="py-4 px-6 text-sm text-gray-700 whitespace-nowrap">
+        {new Date(appointment.startTime).toLocaleDateString()}
+      </td>
+
+      {/* Time */}
+      <td className="py-4 px-6 text-sm text-gray-700 whitespace-nowrap">
+        {new Date(appointment.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+      </td>
+
+      {/* Booking Status */}
+      <td className="py-4 px-6 whitespace-nowrap">
+        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
+          appointment.status?.toUpperCase() === 'BOOKED' ? 'bg-blue-100 text-blue-800' :
+          appointment.status?.toUpperCase() === 'COMPLETED' ? 'bg-green-100 text-green-800' :
+          'bg-yellow-100 text-yellow-800'
+        }`}>
+          {appointment.status?.toUpperCase() || 'BOOKED'}
+        </span>
+      </td>
+
+      {/* Mechanic Name */}
+      <td className="py-4 px-6 text-sm font-medium text-gray-700 whitespace-nowrap">
+        {appointment.employee?.name || '-'}
+      </td>
+
+      {/* View Details */}
+      <td className="py-4 px-6 whitespace-nowrap">
+        <button 
+          onClick={() => fetchUserDetails(appointment.user?.userId)}
+          className="text-indigo-600 hover:text-indigo-800 transition-colors p-1.5 rounded-full hover:bg-indigo-50"
+        >
+          <Eye className="w-5 h-5" />
+        </button>
+      </td>
+
+      {/* Delete Booking */}
+      <td className="py-4 px-6 whitespace-nowrap">
+        <button 
+          onClick={() => handleDelete(appointment.id)}
+          className="text-red-500 hover:text-red-700 transition-colors p-1.5 rounded-full hover:bg-red-50"
+        >
+          <Trash className="w-5 h-5" />
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
             </table>
           </div>
         </div>
