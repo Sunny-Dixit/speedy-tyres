@@ -531,6 +531,8 @@ export default AdminDashboard;*/
 import { useState, useEffect } from 'react';
 import axios from "../../axiosConfig";
 import { Edit, Eye, X, Trash } from 'lucide-react';
+import downloadImage from '../Images/download.png';
+
 
 const AdminDashboard = () => {
   const [showAddService, setShowAddService] = useState(false);
@@ -656,34 +658,39 @@ const AdminDashboard = () => {
       <header className="bg-gradient-to-r from-indigo-800 to-indigo-600 text-white py-3 px-6 flex flex-col md:flex-row items-center justify-between shadow-md">
         <div className="flex items-center space-x-2 md:space-x-6 mb-2 md:mb-0">
           <div className="flex items-center">
-            <div className="bg-green-500 rounded-full p-1 shadow-sm">
-              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div className=" p-1 shadow-sm">
+              {/*<svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M9 22V12h6v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              </svg>*/}
+<img 
+  src={downloadImage} 
+  alt="Genesis Virtue Logo" 
+  className="w-11 h-9 object-cover rounded-full"
+/>
             </div>
-            <span className="ml-2 text-lg font-bold tracking-wide">Genesis Virtue</span>
+            <span className="ml-2 text-lg font-poppins  font-bold tracking-wide">Genesis Virtue</span>
           </div>
           <div className="flex space-x-1 overflow-x-auto whitespace-nowrap">
-            <button className="text-sm flex items-center hover:bg-indigo-700 px-3 py-1 rounded transition-colors bg-indigo-700">
+            {/*<button className="text-sm flex items-center hover:bg-indigo-700 px-3 py-1 rounded transition-colors bg-indigo-700">
               <span className="material-symbols-outlined text-sm mr-1">view_list</span>
               All Appointment
-            </button>
+            </button>*/}
             <button 
               onClick={() => setShowAddService(true)}
-              className="text-sm flex items-center hover:bg-indigo-700 px-3 py-1 rounded transition-colors"
+              className="text-sm font-poppins flex items-center hover:bg-indigo-700 px-3 py-1 rounded transition-colors"
             >
               <span className="material-symbols-outlined text-sm mr-1">add</span>
-              Add Services
-            </button>
+              Lägg till tjänster
+              </button>
           </div>
         </div>
         <div className="flex items-center space-x-4 w-full md:w-auto">
           <div className="relative flex-grow md:flex-grow-0">
             <input 
               type="text" 
-              placeholder="Search patient" 
-              className="bg-indigo-700 rounded-lg py-1.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full placeholder-indigo-200" 
+              placeholder="Sök tidbokning" 
+              className="bg-indigo-700 font-poppins rounded-lg py-1.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full placeholder-indigo-200" 
               value={nameFilter}
               onChange={handleNameFilterChange}
             />
@@ -708,7 +715,7 @@ const AdminDashboard = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
             <div className="flex justify-between items-center bg-indigo-700 text-white p-5 rounded-t-xl">
-              <h3 className="text-lg font-semibold tracking-wide">Add New Service</h3>
+              <h3 className="text-lg font-semibold tracking-wide">Lägg till ny tjänst</h3>
               <button 
                 onClick={() => setShowAddService(false)}
                 className="text-white hover:text-indigo-200 transition-colors"
@@ -720,7 +727,7 @@ const AdminDashboard = () => {
             <form onSubmit={handleSubmit} className="p-6 space-y-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Category
+                Kategori
                 </label>
                 <select
                   name="category"
@@ -729,7 +736,7 @@ const AdminDashboard = () => {
                   className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                   required
                 >
-                  <option value="">Select Category</option>
+                  <option value="">Välj kategori</option>
                   {categories.map((cat, index) => (
                     <option key={index} value={cat}>{cat}</option>
                   ))}
@@ -738,8 +745,7 @@ const AdminDashboard = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Employee
-                </label>
+                Anställd                </label>
                 <select
                   name="employee"
                   value={formData.employee}
@@ -747,7 +753,7 @@ const AdminDashboard = () => {
                   className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                   required
                 >
-                  <option value="">Select Employee</option>
+                  <option value="">Välj anställd</option>
                   {employees.map((emp, index) => (
                     <option key={index} value={emp}>{emp}</option>
                   ))}
@@ -755,23 +761,23 @@ const AdminDashboard = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Service Name
-                </label>
+                Tjänstnamn
+             </label>
                 <input
                   type="text"
                   name="serviceName"
                   value={formData.serviceName}
                   onChange={handleInputChange}
                   className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="Enter service name"
+                  placeholder="Ange tjänstnamn"
                   required
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Duration (minutes)
-                </label>
+                Varaktighet (minuter)
+               </label>
                 <input
                   type="number"
                   name="duration"
@@ -790,14 +796,15 @@ const AdminDashboard = () => {
                   onClick={() => setShowAddService(false)}
                   className="px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium"
                 >
-                  Cancel
+                Avbryt
                 </button>
                 <button
                   type="submit"
                   className="px-5 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium shadow-sm"
                 >
-                  Save Service
-                </button>
+Spara tjänst
+
+</button>
               </div>
             </form>
           </div>
@@ -851,7 +858,7 @@ const AdminDashboard = () => {
               <div className="relative">
                 <input 
                   type="text" 
-                  placeholder="Filter Name/Service" 
+                  placeholder="Filtrera namn/tjänst" 
                   className="border border-gray-300 rounded-lg py-1.5 px-3 text-sm w-40 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" 
                   value={nameFilter}
                   onChange={handleNameFilterChange}
@@ -870,17 +877,13 @@ const AdminDashboard = () => {
               </div>
               <div className="flex flex-wrap gap-2">
                 <div className="bg-blue-600 rounded-lg px-3 py-1.5 text-white text-xs font-medium shadow-sm">
-                  Booked
-                </div>
+                Bokad                </div>
                 <div className="bg-blue-100 rounded-lg px-3 py-1.5 text-blue-700 text-xs font-medium hover:bg-blue-200 transition-colors cursor-pointer shadow-sm">
-                  Arrived
-                </div>
+                Anlänt                </div>
                 <div className="bg-blue-100 rounded-lg px-3 py-1.5 text-blue-700 text-xs font-medium hover:bg-blue-200 transition-colors cursor-pointer shadow-sm">
-                  On-Going
-                </div>
+                Pågående                </div>
                 <div className="bg-blue-100 rounded-lg px-3 py-1.5 text-blue-700 text-xs font-medium hover:bg-blue-200 transition-colors cursor-pointer shadow-sm">
-                  Reviewed
-                </div>
+                Granskad                </div>
               </div>
             </div>
             <div className="flex items-center space-x-3 mt-3 md:mt-0">
@@ -900,7 +903,7 @@ const AdminDashboard = () => {
                   }
                 }}
               >
-                Set
+                Sätt datum
               </button>
               <button 
                 className={`border border-gray-300 rounded-lg px-4 py-1.5 text-sm hover:bg-gray-100 transition-colors font-medium shadow-sm ${
@@ -912,7 +915,7 @@ const AdminDashboard = () => {
                   setDateFilter(today);
                 }}
               >
-                Today
+              Idag
               </button>
               {(dateFilter || employeeFilter || nameFilter) && (
                 <button 
@@ -924,8 +927,9 @@ const AdminDashboard = () => {
                     setSelectedDate('');
                   }}
                 >
-                  Clear Filters
-                </button>
+                Rensa filter
+
+              </button>
               )}
             </div>
           </div>
@@ -937,17 +941,17 @@ const AdminDashboard = () => {
             <table className="min-w-full bg-white border-collapse">
               <thead className="bg-gray-50 sticky top-0 z-10 shadow-sm">
                 <tr>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Edit</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Price</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Time</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Employee</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Service</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">View</th>
-                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Delete</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Boknings-ID</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Kundens namn</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Tjänst</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Redigera</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Pris för service</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Bokningsdatum</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Tid</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Bokningsstatus</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Mekaniker namn</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Visa detaljer</th>
+                  <th className="py-4 px-6 font-poppins text-left text-xs font-sans font-semibold text-gray-600 uppercase tracking-wider">Radera bokning</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
