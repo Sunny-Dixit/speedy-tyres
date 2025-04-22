@@ -1099,13 +1099,13 @@ const AdminDashboard = () => {
             <span className="ml-2 text-lg font-poppins font-bold tracking-wide"></span>
           </div>
           <div className="flex space-x-1 overflow-x-auto whitespace-nowrap">
-            <button 
+           {/* <button 
               onClick={() => setShowAddService(true)}
               className="text-sm font-inter flex items-center hover:bg-indigo-700 px-3 py-1 rounded transition-colors"
             >
               <span className="material-symbols-outlined text-sm mr-1">add</span>
               Lägg till tjänster
-            </button>
+            </button>*/}
           </div>
         </div>
         <div className="flex items-center space-x-4 w-full md:w-auto">
