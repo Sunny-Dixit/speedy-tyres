@@ -25,17 +25,17 @@ const SpeedyTyresPage = () => {
             <div className="w-full md:w-3/5 bg-black p-8 shadow-2xl overflow-y-auto hide-scrollbar custom-scrollbar h-screen ml-4 mb-4 hidden md:block">
             <section className="space-y-6 pb-6 p-6 border-b border-orange-600">
                         <div className="bg-black p-6 rounded-lg shadow-md">
-                            <p className="text-lg text-white leading-relaxed font-light">
+                            <p className="text-lg font-inter text-white leading-relaxed font-light">
                              Fullservice bilvård i Göteborg. Vi erbjuder premium däck- och fordonsunderhållstjänster.                            </p>
                         </div>
                     </section>
 
                     <section className="space-y-6 pb-6 p-6 border-b border-orange-600">
                         <div className="bg-black p-6 rounded-lg shadow-md">
-                            <h2 className="text-3xl font-semibold text-orange-500 tracking-wide">
+                            <h2 className="text-3xl font-inter font-semibold text-orange-500 tracking-wide">
                             Varför välja oss?
                             </h2>
-                            <ul className="space-y-4 text-white mt-4 text-sm md:text-base list-disc pl-5">
+                            <ul className="space-y-4 text-white font-inter mt-4 text-sm md:text-base list-disc pl-5">
                                 <li>✅ Snabbt & Pålitligt – Samma dag-service för akuta reparationer</li>
                                 <li>✅ Experttekniker – Certifierade proffs med OEM-klassade verktyg</li>
                                 <li>✅ Rättvisa priser – Konkurrenskraftiga priser för alla fordonstyper</li>
@@ -47,10 +47,10 @@ const SpeedyTyresPage = () => {
 
                     <section className="space-y-6 pb-6 p-6 border-b border-orange-600">
                         <div className="bg-black p-6 rounded-lg shadow-md">
-                            <h2 className="text-3xl font-semibold text-orange-500 tracking-wide">
+                            <h2 className="text-3xl font-inter font-semibold text-orange-500 tracking-wide">
                             Våra tjänster
                             </h2>
-                            <ul className="space-y-4 text-white mt-4 text-sm md:text-base list-disc pl-5">
+                            <ul className="space-y-4 font-inter text-white mt-4 text-sm md:text-base list-disc pl-5">
                                 <li>🔧 Däck & Fälgar – Försäljning, reparationer och restaurering</li>
                                 <li>🛠  Bilservice & Underhåll – Oljebyten, bromskontroller, motordiagnostik</li>
                                 <li>🚗 Professionellt karosseri – Borttagning av bucklor/repor, fullständig omlackering</li>
@@ -61,19 +61,19 @@ const SpeedyTyresPage = () => {
 
                     <section className="space-y-6 pb-6 p-6">
                         <div className="bg-black p-6 rounded-lg shadow-md">
-                            <h2 className="text-3xl font-semibold text-orange-500 tracking-wide">
+                            <h2 className="text-3xl font-inter font-semibold text-orange-500 tracking-wide">
                                  Kontakta oss
                             </h2>
-                            <p className="text-white text-sm md:text-base">
+                            <p className="text-white font-inter text-sm md:text-base">
                                 Tveka inte att kontakta oss för frågor eller för att boka en tid.
                             </p>
                             <div className="mt-6 space-y-4 text-white text-sm md:text-base">
                                 <div>
-                                    <p className="font-semibold">📍 Besök oss:</p>
-                                    <p>Manufakturgatan 13, 417 07 Göteborg</p>
+                                    <p className="font-inter font-semibold">📍 Besök oss:</p>
+                                    <p className='font-inter'>Manufakturgatan 13, 417 07 Göteborg</p>
                                 </div>
                                 <div>
-                                    <p className="font-semibold">📞 Ring nu:</p>
+                                    <p className="font-inter font-semibold">📞 Ring nu:</p>
                                     <p><a href="tel:0313951200">0313951200</a></p>
                                     <p><a href="tel:0700000137">0700000137</a></p>
                                 </div>

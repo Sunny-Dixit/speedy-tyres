@@ -646,7 +646,7 @@ const SlotCalendarPage = () => {
             <div className="w-full max-w-4xl max-h-[90vh] bg-gray-800 p-6 rounded-[10px] shadow-lg space-y-6 flex flex-col overflow-hidden">
                 <div className="flex-shrink-0">
                     <img src={logo} alt="Speedy Tyres Logo" className="w-17 h-12 ml-2" />
-                    <p className="ml-10 text-orange-500">Välj ett datum och en tid för din bokning</p>
+                    <p className="ml-10 font-inter text-orange-500">Välj ett datum och en tid för din bokning</p>
                 </div>
 
                 <div className="flex-1 overflow-y-auto scrollbar-hide space-y-6">
@@ -659,7 +659,7 @@ const SlotCalendarPage = () => {
                                 <button
                                     key={index}
                                     onClick={() => setSelectedDateLocal(date)}
-                                    className={`px-4 font-sans py-2 rounded-lg flex flex-col items-center flex-shrink-0 ${
+                                    className={`px-4 font-inter py-2 rounded-lg flex flex-col items-center flex-shrink-0 ${
                                         selectedDateLocal.toDateString() === date.toDateString()
                                             ? "bg-orange-600 text-white"
                                             : "bg-gray-600 text-gray-200"
@@ -676,7 +676,7 @@ const SlotCalendarPage = () => {
                     {loadingSlots ? (
                         <p className="text-white text-center">Loading slots...</p>
                     ) : slots.length > 0 ? (
-                        <div className="font-sans space-y-4">
+                        <div className="font-inter space-y-4">
                             {["Morgon", "Eftermiddag", "Kväll"].map((period) => {
                                 const filteredSlots = slots.filter((slot) => categorizeSlots(slot) === period);
                                 if (filteredSlots.length === 0) return null;
@@ -704,7 +704,7 @@ const SlotCalendarPage = () => {
                             })}
                         </div>
                     ) : (
-                        <p className="text-white text-center">Inga tider tillgängliga för det valda datumet.</p>
+                        <p className="text-white font-inter text-center">Inga tider tillgängliga för det valda datumet.</p>
                     )}
                 </div>
 
@@ -712,7 +712,7 @@ const SlotCalendarPage = () => {
                     <button
                         disabled={isBooking || bookingSuccess}
                         onClick={handleBookAppointment}
-                        className={`w-full py-3 rounded-lg font-bold ${
+                        className={`w-full py-3 font-inter rounded-lg font-bold ${
                             isBooking || bookingSuccess
                                 ? "bg-gray-500 text-white"
                                 : selectedSlot

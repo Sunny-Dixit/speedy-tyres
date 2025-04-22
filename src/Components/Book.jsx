@@ -378,7 +378,7 @@ const Book = () => {
                             <button
                                 key={category.id}
                                 onClick={() => handleCategoryClick(category)}
-                                className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap ${
+                                className={`px-4 font-inter py-2 rounded-full font-medium text-sm whitespace-nowrap ${
                                     selectedCategory?.id === category.id
                                         ? 'bg-orange-600 text-white'
                                         : 'bg-gray-700 text-gray-300'
@@ -390,9 +390,9 @@ const Book = () => {
                     </div>
 
                     <div className="bg-gray-700 mt-5 p-4 rounded-xl border border-gray-600">
-                        <label className="font-bold text-sm text-gray-300 mb-2 block">Välj Tjänst</label>
+                        <label className="font-bold font-inter text-sm text-gray-300 mb-2 block">Välj Tjänst</label>
                         <select
-                            className="p-3 bg-gray-800 text-sm border border-gray-600 rounded w-full"
+                            className="p-3 bg-gray-800 font-inter text-sm border border-gray-600 rounded w-full"
                             onChange={(e) =>
                                 handleServiceSelect(
                                     services.find((serv) => serv.id === parseInt(e.target.value))
@@ -412,7 +412,7 @@ const Book = () => {
                     </div>
 
                     {selectedService && employees.length > 0 && (
-                        <div className="bg-gray-700 mt-5 p-4 rounded-xl border border-gray-600">
+                        <div className="bg-gray-700 font-inter mt-5 p-4 rounded-xl border border-gray-600">
                             <label className="font-bold text-sm text-gray-300 mb-2 block">Välj Mekaniker</label>
                             <select
                                 className="p-3 bg-gray-800 text-sm border border-gray-600 rounded w-full"
@@ -435,7 +435,7 @@ const Book = () => {
                     )}
 
                     {selectedService && (
-                        <div className="bg-gray-800 mt-5 p-4 rounded-xl shadow">
+                        <div className="bg-gray-800 font-inter mt-5 p-4 rounded-xl shadow">
                             <div className="flex justify-between items-center">
                                 <div>
                                     <p className="font-semibold text-gray-300">
@@ -447,7 +447,7 @@ const Book = () => {
                                             : 'Tillgängliga tider idag'}
                                     </p>
                                 </div>
-                                <p className="font-bold text-orange-600">
+                                <p className="font-bold font-inter text-orange-600">
                                     från SEK {selectedService.price || 0}
                                 </p>
                             </div>
@@ -485,7 +485,7 @@ const Book = () => {
                                         slots.slice(0, 3).map((slot, index) => (
                                             <button
                                                 key={index}
-                                                className={`px-4 py-2 rounded ${
+                                                className={`px-4 font-inter py-2 rounded ${
                                                     selectedSlot?.id === slot.id
                                                         ? 'bg-orange-600 text-white'
                                                         : 'bg-gray-600 text-gray-300'
@@ -506,19 +506,19 @@ const Book = () => {
                                             </button>
                                         ))
                                     ) : (
-                                        <p className="text-gray-400">Inga tillgängliga tider</p>
+                                        <p className="font-inter text-gray-400">Inga tillgängliga tider</p>
                                     )
                                 ) : (
                                     <>
-                                        <button className="px-4 py-2 bg-gray-600 text-gray-300 rounded">11:15</button>
-                                        <button className="px-4 py-2 bg-gray-600 text-gray-300 rounded">11:30</button>
-                                        <button className="px-4 py-2 bg-gray-600 text-gray-300 rounded">11:45</button>
+                                        <button className="px-4 font-inter py-2 bg-gray-600 text-gray-300 rounded">11:15</button>
+                                        <button className="px-4 font-inter py-2 bg-gray-600 text-gray-300 rounded">11:30</button>
+                                        <button className="px-4 font-inter py-2 bg-gray-600 text-gray-300 rounded">11:45</button>
                                     </>
                                 )}
                             </div>
 
                             <button
-                                className="mt-4 bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded w-full transition-colors"
+                                className="mt-4 bg-orange-600 font-inter hover:bg-orange-700 text-white py-2 px-4 rounded w-full transition-colors"
                                 onClick={handleSeeAllSlots}
                                 disabled={!selectedEmployee || slots.length === 0}
                             >

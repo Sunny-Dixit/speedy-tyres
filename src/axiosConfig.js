@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const instance = axios.create({
    //baseURL: 'https://api.speedy-tyres-v3.up7news.in/',
-  baseURL: 'https://api.speedy-tyres-mail.dermrange.io/',
+   baseURL: 'https://api.speedy-tyres-mail.dermrange.io/',
   //baseURL: 'http://localhost:8080/',
 
 

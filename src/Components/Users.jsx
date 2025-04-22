@@ -205,7 +205,7 @@ const Users = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-black px-4 py-8 relative">
             <div className="w-full max-w-lg relative bg-[#1a1a1a] p-8 shadow-xl rounded-lg space-y-6 border border-orange-500 z-10">
-                <h1 className="text-3xl font-bold text-orange-500 mb-4 text-center">Boka tid</h1>
+                <h1 className="text-3xl font-inter font-bold text-orange-500 mb-4 text-center">Boka tid</h1>
 
                 {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
@@ -217,7 +217,7 @@ const Users = () => {
                             placeholder="ABC 123"
                             value={registrationNumber}
                             onChange={handleInputChange}
-                            className="p-3 w-[150px] text-2xl text-center text-white bg-[#1a1a1a] border-2 border-orange-500"
+                            className="p-3 font-inter w-[150px] text-2xl text-center text-white bg-[#1a1a1a] border-2 border-orange-500"
                             style={{
                                 textTransform: 'uppercase',
                                 borderLeft: '15px solid #ff6600',
@@ -233,7 +233,7 @@ const Users = () => {
                             placeholder="Ange ditt namn"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
-                            className="p-2 w-full bg-[#1a1a1a] text-white border border-orange-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            className="p-2 font-inter w-full bg-[#1a1a1a] text-white border border-orange-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                     </div>
 
@@ -244,7 +244,7 @@ const Users = () => {
                             placeholder="Ange ditt telefonnummer"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
-                            className="p-2 w-full bg-[#1a1a1a] text-white border border-orange-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            className="p-2 font-inter w-full bg-[#1a1a1a] text-white border border-orange-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                     </div>
 
@@ -255,13 +255,13 @@ const Users = () => {
                             placeholder="Ange din e-postadress"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="p-2 w-full bg-[#1a1a1a] text-white border border-orange-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            className="p-2 font-inter w-full bg-[#1a1a1a] text-white border border-orange-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                     </div>
                 </div>
 
                 <button
-                    className="mt-6 bg-orange-500 text-white py-3 px-6 rounded-lg w-full hover:bg-orange-600 transition-transform transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="mt-6 bg-orange-500 font-inter text-white py-3 px-6 rounded-lg w-full hover:bg-orange-600 transition-transform transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
                     onClick={handleBooking}
                     disabled={loading}
                 >
