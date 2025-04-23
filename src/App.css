@@ -102,7 +102,144 @@ body, html {
 }
 
 
+@media (max-width: 640px) {
+  header {
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  header img {
+    height: 32px;
+  }
+  .filter-panel {
+    display: none;
+  }
+  .filter-panel.active {
+    display: block;
+    padding: 12px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  table {
+    display: none;
+  }
+  .appointment-card {
+    margin: 16px;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+  .modal {
+    width: 100%;
+    max-width: 360px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  .calendar {
+    font-size: 12px;
+    padding: 8px;
+  }
+  .calendar .event {
+    font-size: 10px;
+    max-width: 100px;
+  }
+  button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
 
+/* Hide scrollbar for the appointments section */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* General table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Responsive table and calendar styles */
+@media (max-width: 640px) {
+  table {
+    font-size: 0.75rem; /* Smaller font for mobile */
+  }
+  th, td {
+    padding: 0.5rem 0.75rem; /* Reduced padding */
+  }
+  button {
+    padding: 0.25rem; /* Smaller buttons */
+  }
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  /* Calendar adjustments */
+  .grid-cols-7 > div {
+    font-size: 0.75rem; /* Smaller text for calendar days */
+    padding: 0.25rem; /* Reduced padding */
+  }
+  .min-h-\[60px\] {
+    min-height: 60px; /* Ensure calendar cells are compact */
+  }
+  .text-lg {
+    font-size: 1rem; /* Smaller calendar header */
+  }
+}
+
+/* Desktop-specific styles */
+@media (min-width: 640px) {
+  table {
+    font-size: 0.875rem; /* Default font size for desktop */
+  }
+  th, td {
+    padding: 1rem; /* Default padding */
+  }
+  .min-h-\[80px\] {
+    min-height: 80px; /* Larger calendar cells for desktop */
+  }
+}
+
+/* Ensure buttons are touch-friendly */
+button {
+  touch-action: manipulation; /* Improve touch responsiveness */
+  min-width: 40px; /* Minimum touch target size */
+  min-height: 40px;
+}
+
+/* Calendar event truncation */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
 
 
   
